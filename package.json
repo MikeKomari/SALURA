@@ -28,9 +28,4 @@
     "typescript": "~5.9.3",
     "vitest": "^3.2.7"
   },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "better-sqlite3"
-    ]
-  }
 }
