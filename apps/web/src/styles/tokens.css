@@ -1,0 +1,66 @@
+/* SALURA design tokens. Source of truth: /DESIGN.md. Components reference these, never raw values. */
+:root {
+  /* Colour */
+  --canvas: #f2f4f1;
+  --surface: #ffffff;
+  --surface-muted: #edf0ec;
+  --border: #dde2dc;
+  --ink: #111813;
+  --ink-2: #3d4840;
+  --ink-3: #56625a;
+  --primary: #17603a;
+  --primary-strong: #0e3f25;
+  --primary-soft: #e7f2ea;
+  --primary-on-strong: #d4eddc;
+  --chart-2: #3e9b63;
+  --chart-3: #9fd3b2;
+  --warning-fg: #7a4e00;
+  --warning-bg: #fff1cc;
+  --danger-fg: #a8231a;
+  --danger-bg: #fde8e6;
+  --info-fg: #1f5fad;
+  --info-bg: #e6effa;
+  --focus: #17603a;
+  --gradient-feature: linear-gradient(135deg, var(--primary) 0%, var(--primary-strong) 100%);
+
+  /* Typography */
+  --font-sans: 'Plus Jakarta Sans Variable', 'Plus Jakarta Sans', ui-sans-serif, system-ui, sans-serif;
+  --font-mono: ui-monospace, 'SFMono-Regular', Menlo, monospace;
+  --type-display: 600 48px/52px var(--font-sans);
+  --type-h1: 600 32px/40px var(--font-sans);
+  --type-h2: 600 20px/28px var(--font-sans);
+  --type-h3: 600 17px/24px var(--font-sans);
+  --type-body: 400 16px/24px var(--font-sans);
+  --type-label: 500 15px/20px var(--font-sans);
+  --type-small: 400 14px/20px var(--font-sans);
+  --type-meta: 400 13px/18px var(--font-sans);
+
+  /* Space */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+
+  /* Shape and depth */
+  --radius-frame: 28px;
+  --radius-card: 20px;
+  --radius-inner: 12px;
+  --radius-input: 12px;
+  --radius-pill: 999px;
+  --shadow-pop: 0 1px 2px rgb(17 24 19 / 0.06), 0 8px 24px rgb(17 24 19 / 0.1);
+
+  /* Motion */
+  --dur-fast: 150ms;
+  --dur-panel: 250ms;
+  --ease-out: cubic-bezier(0.2, 0, 0, 1);
+
+  /* Layout */
+  --sidebar-width: 248px;
+  --sidebar-rail: 72px;
+  --hit-min: 44px;
+}

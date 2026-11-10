@@ -1,0 +1,12 @@
+packages:
+  - apps/*
+  - packages/*
+allowBuilds:
+  better-sqlite3: set this to true or false
+  esbuild: true
+minimumReleaseAgeExclude:
+  - framer-motion@14.5.0
+  - lucide-react@1.61.0
+  - motion-dom@14.5.0
+  - motion@14.5.0
+  - vite@8.3.5

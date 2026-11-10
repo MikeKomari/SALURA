@@ -1,0 +1,12 @@
+node_modules/
+.env
+*.sqlite
+*.sqlite-*
+data/
+dist/
+.omc/
+packages/eval/results/
+.vercel/
+.env.*
+!.env.example
+*.tsbuildinfo

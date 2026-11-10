@@ -1,0 +1,101 @@
+@import 'tailwindcss';
+@import './tokens.css';
+
+/* Map DESIGN.md tokens into Tailwind utilities (bg-surface, text-ink-2, rounded-card, text-h1 ...). */
+@theme inline {
+  --color-canvas: var(--canvas);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-border: var(--border);
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-primary: var(--primary);
+  --color-primary-strong: var(--primary-strong);
+  --color-primary-soft: var(--primary-soft);
+  --color-primary-on-strong: var(--primary-on-strong);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-warning-fg: var(--warning-fg);
+  --color-warning-bg: var(--warning-bg);
+  --color-danger-fg: var(--danger-fg);
+  --color-danger-bg: var(--danger-bg);
+  --color-info-fg: var(--info-fg);
+  --color-info-bg: var(--info-bg);
+
+  --radius-frame: var(--radius-frame);
+  --radius-card: var(--radius-card);
+  --radius-inner: var(--radius-inner);
+  --radius-input: var(--radius-input);
+  --radius-pill: var(--radius-pill);
+
+  --shadow-pop: var(--shadow-pop);
+  --font-sans: var(--font-sans);
+  --font-mono: var(--font-mono);
+}
+
+@theme {
+  --text-display: 48px;
+  --text-display--line-height: 52px;
+  --text-display--letter-spacing: -0.02em;
+  --text-h1: 32px;
+  --text-h1--line-height: 40px;
+  --text-h1--letter-spacing: -0.02em;
+  --text-h2: 20px;
+  --text-h2--line-height: 28px;
+  --text-h3: 17px;
+  --text-h3--line-height: 24px;
+  --text-body: 16px;
+  --text-body--line-height: 24px;
+  --text-label: 15px;
+  --text-label--line-height: 20px;
+  --text-small: 14px;
+  --text-small--line-height: 20px;
+  --text-meta: 13px;
+  --text-meta--line-height: 18px;
+}
+
+@layer base {
+  html {
+    background: var(--canvas);
+    color: var(--ink);
+    font-family: var(--font-sans);
+    font-size: 16px;
+    -webkit-font-smoothing: antialiased;
+  }
+  body {
+    margin: 0;
+    background: var(--canvas);
+    font: var(--type-body);
+  }
+  h1,
+  h2,
+  h3 {
+    text-wrap: balance;
+  }
+  p {
+    text-wrap: pretty;
+  }
+  :focus-visible {
+    outline: 2px solid var(--focus);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--primary-soft);
+  }
+}
+
+@utility tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Hatched fill for empty chart capsules and "remaining" gauge segments. */
+@utility hatch {
+  background-color: var(--surface);
+  background-image: repeating-linear-gradient(135deg, var(--border) 0 3px, transparent 3px 8px);
+}
+
+@utility scrollbar-thin {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border) transparent;
+}

@@ -1,0 +1,15 @@
+{
+  "name": "@salura/eval",
+  "private": true,
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "eval": "tsx --env-file-if-exists=../../.env src/cli.ts"
+  },
+  "dependencies": {
+    "@salura/agent": "workspace:*",
+    "@salura/db": "workspace:*"
+  }
+}

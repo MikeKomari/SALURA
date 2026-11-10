@@ -1,0 +1,65 @@
+# SALURA: the API + ops console on port 8787, data in the `salura-data` volume.
+#   docker compose up -d --build
+# With the WhatsApp channel (OpenWA, unofficial WhatsApp Web gateway):
+#   docker compose --profile whatsapp up -d --build
+# then follow "WhatsApp via OpenWA" in README.md to pair a number and register the webhook.
+
+services:
+  salura:
+    build: .
+    image: salura:latest
+    container_name: salura
+    restart: unless-stopped
+    env_file:
+      - path: .env
+        required: false
+    environment:
+      PORT: 8787
+      # Inside this compose network OpenWA is reachable by its service name. A separate variable
+      # name, because compose would otherwise pick up the localhost URL from .env.
+      OPENWA_BASE_URL: ${SALURA_OPENWA_BASE_URL:-http://openwa:2785/api}
+    ports:
+      - '${SALURA_PORT:-8787}:8787'
+    volumes:
+      - salura-data:/app/data
+
+  # OpenWA, using its published image (ghcr.io/rmyndharis/openwa) with SQLite and local storage,
+  # following the project's docker-compose.dev.yml. Dashboard and API on port 2785 (bound to
+  # localhost). The admin API key is generated on first boot: docker exec openwa-api cat /app/data/.api-key
+  openwa:
+    profiles: ['whatsapp']
+    image: ghcr.io/rmyndharis/openwa:${OPENWA_VERSION:-latest}
+    container_name: openwa-api
+    restart: unless-stopped
+    security_opt:
+      - 'no-new-privileges:true'
+    mem_limit: ${OPENWA_MEM_LIMIT:-2g}
+    ports:
+      - '${OPENWA_BIND_HOST:-127.0.0.1}:2785:2785'
+    environment:
+      - NODE_ENV=production
+      - TZ=Asia/Jakarta
+      - PORT=2785
+      - HOME=/tmp
+      - XDG_CONFIG_HOME=/tmp/.config
+      - XDG_CACHE_HOME=/tmp/.cache
+      - AUTO_START_SESSIONS=true
+      - DATABASE_TYPE=sqlite
+      - DATABASE_SYNCHRONIZE=true
+      - SESSION_DATA_PATH=/app/data/sessions
+      - STORAGE_TYPE=local
+      - STORAGE_LOCAL_PATH=/app/data/media
+      - PUPPETEER_HEADLESS=true
+      - PUPPETEER_ARGS=--no-sandbox,--disable-setuid-sandbox,--disable-dev-shm-usage,--disable-gpu
+    volumes:
+      - openwa-data:/app/data
+    healthcheck:
+      test: ['CMD-SHELL', 'node -e "fetch(''http://127.0.0.1:2785/api/health/ready'').then(r=>process.exit(r.ok?0:1)).catch(()=>process.exit(1))"']
+      interval: 30s
+      timeout: 10s
+      start_period: 60s
+      retries: 5
+
+volumes:
+  salura-data:
+  openwa-data:

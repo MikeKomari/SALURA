@@ -1,0 +1,17 @@
+**/node_modules
+**/dist
+.git
+.omc
+**/.omc
+.env
+.env.*
+!.env.example
+data
+**/*.sqlite
+**/*.sqlite-*
+packages/eval/results
+docs
+Dockerfile
+docker-compose.yml
+.dockerignore
+.vercel

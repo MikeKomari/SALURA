@@ -1,0 +1,8 @@
+TYPE: payment_proof
+Jumlah: Rp 624.100
+Tanggal: 25 Okt 2026 09:14:52 WIB
+Bank: BCA m-Transfer
+Referensi: 2510MT0091447
+Pengirim: SARI WULANDARI
+Penerima: CV SUMBER REJEKI
+Berita: bayar inv 00003
